@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
@@ -15,4 +16,6 @@ public class ExpenseServiceImpl implements ExpenseService{
     public List<Expense> getAllExpenses() {
         return expenseRepository.findAll();
     }
+    @Override
+    public Optional<Expense> getExpenseById(Long id) { return expenseRepository.findById(id);}
 }
