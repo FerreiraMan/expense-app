@@ -14,9 +14,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
-    }
+    public List<Expense> getAllExpenses() { return expenseRepository.findAll(); }
 
     @Override
     public Expense getExpenseById(Long id) {
@@ -31,4 +29,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     public void deleteExpenseById(Long id) {
         expenseRepository.deleteById(id);
     }
+
+    @Override
+    public Expense saveExpenseDetails(Expense expense) { return expenseRepository.save(expense); }
 }

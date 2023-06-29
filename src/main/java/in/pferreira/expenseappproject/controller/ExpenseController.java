@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ExpenseController {
@@ -25,7 +24,8 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/expenses")
-    public void deleteExpenseById(@RequestParam Long id){
-        expenseService.deleteExpenseById(id);
-    }
+    public void deleteExpenseById(@RequestParam Long id){ expenseService.deleteExpenseById(id); }
+
+    @PostMapping("/expenses")
+    public Expense saveExpenseDetails(@RequestBody Expense expense){ return expenseService.saveExpenseDetails(expense);}
 }
