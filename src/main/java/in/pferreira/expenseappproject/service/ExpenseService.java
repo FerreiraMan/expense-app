@@ -5,5 +5,5 @@ import java.util.Optional;
 
 public interface ExpenseService {
     List<Expense> getAllExpenses();
-    Optional<Expense> getExpenseById(Long id);
+    Expense getExpenseById(Long id);
 }

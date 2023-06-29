@@ -17,5 +17,11 @@ public class ExpenseServiceImpl implements ExpenseService{
         return expenseRepository.findAll();
     }
     @Override
-    public Optional<Expense> getExpenseById(Long id) { return expenseRepository.findById(id);}
+    public Expense getExpenseById(Long id) {
+        Optional<Expense> expense = expenseRepository.findById(id);
+        if (expense.isPresent()) {
+            return expense.get();
+        }
+        throw new RuntimeException("Expense is not found for the id "+id);
+    }
 }
