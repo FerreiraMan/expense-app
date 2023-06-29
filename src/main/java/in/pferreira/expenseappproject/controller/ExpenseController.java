@@ -23,4 +23,9 @@ public class ExpenseController {
     public Expense getExpenseById(@PathVariable Long id) {
         return expenseService.getExpenseById(id);
     }
+
+    @DeleteMapping("/expenses")
+    public void deleteExpenseById(@RequestParam Long id){
+        expenseService.deleteExpenseById(id);
+    }
 }

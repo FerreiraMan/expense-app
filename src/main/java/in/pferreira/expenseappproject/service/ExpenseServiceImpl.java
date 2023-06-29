@@ -12,10 +12,12 @@ import java.util.Optional;
 public class ExpenseServiceImpl implements ExpenseService{
     @Autowired
     private ExpenseRepository expenseRepository;
+
     @Override
     public List<Expense> getAllExpenses() {
         return expenseRepository.findAll();
     }
+
     @Override
     public Expense getExpenseById(Long id) {
         Optional<Expense> expense = expenseRepository.findById(id);
@@ -23,5 +25,10 @@ public class ExpenseServiceImpl implements ExpenseService{
             return expense.get();
         }
         throw new RuntimeException("Expense is not found for the id "+id);
+    }
+
+    @Override
+    public void deleteExpenseById(Long id) {
+        expenseRepository.deleteById(id);
     }
 }
