@@ -1,10 +1,11 @@
 package in.pferreira.expenseappproject.service;
 import in.pferreira.expenseappproject.entity.Expense;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 public interface ExpenseService {
-    List<Expense> getAllExpenses();
+    Page<Expense> getAllExpenses(Pageable page);
     Expense getExpenseById(Long id);
     void deleteExpenseById(Long id);
     Expense saveExpenseDetails(Expense expense);
