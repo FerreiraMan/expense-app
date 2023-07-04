@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -22,6 +24,8 @@ public class Expense {
     private Long id;
 
     @Column(name = "expense_name")
+    @NotNull(message = "Expense name must not be null")
+    @Size(min = 3, message = "Expense name must be at least 3 characters")
     private String name;
 
     private String description;
