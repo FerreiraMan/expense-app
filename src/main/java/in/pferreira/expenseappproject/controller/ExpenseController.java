@@ -3,6 +3,7 @@ package in.pferreira.expenseappproject.controller;
 import in.pferreira.expenseappproject.entity.Expense;
 import in.pferreira.expenseappproject.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +38,13 @@ public class ExpenseController {
     @PutMapping("/expenses/{id}")
     public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
         return expenseService.updateExpenseDetails(id, expense);
+    }
+    @GetMapping("/expenses/category")
+    public List<Expense> getExpensesByCategory(@RequestParam String category, Pageable page) {
+        return expenseService.readByCategory(category, page);
+    }
+    @GetMapping("/expenses/name")
+    public List<Expense> getAllExpensesByName(@RequestParam String keyword, Pageable page) {
+        return expenseService.readByName(keyword, page);
     }
 }
