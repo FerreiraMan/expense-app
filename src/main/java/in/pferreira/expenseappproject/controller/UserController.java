@@ -33,8 +33,11 @@ public class UserController {
         return new ResponseEntity<User>(newUser, HttpStatus.OK);
     }
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    @DeleteMapping("/users")
-    public void deleteUserById(@RequestParam Long id){ userService.deleteUserById(id); }
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id){
+        userService.deleteUserById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
     @GetMapping("/users")
     public List<User> getAllUsers(Pageable page) {
         return userService.getAllUsers(page).toList();
