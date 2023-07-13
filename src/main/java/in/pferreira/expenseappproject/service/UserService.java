@@ -7,4 +7,5 @@ public interface UserService {
     User createUser(UserModel user);
     User readUser(Long id);
     User updateUser(User user, Long  id);
+    void deleteUserById(Long id);
 }

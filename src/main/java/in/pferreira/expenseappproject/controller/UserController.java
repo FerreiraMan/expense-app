@@ -28,4 +28,7 @@ public class UserController {
         User newUser = userService.updateUser(user, id);
         return new ResponseEntity<User>(newUser, HttpStatus.OK);
     }
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @DeleteMapping("/users")
+    public void deleteUserById(@RequestParam Long id){ userService.deleteUserById(id); }
 }
