@@ -7,6 +7,8 @@ import in.pferreira.expenseappproject.exceptions.ResourceNotFoundException;
 import in.pferreira.expenseappproject.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,6 +43,10 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         User user = readUser(id);
         userRepository.delete(user);
+    }
+    @Override
+    public Page<User> getAllUsers(Pageable page) {
+        return userRepository.findAll(page);
     }
 }
 
