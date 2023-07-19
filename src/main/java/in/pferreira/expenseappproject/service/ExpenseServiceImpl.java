@@ -26,7 +26,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense getExpenseById(Long id) {
-        Optional<Expense> expense = expenseRepository.findById(id);
+        Optional<Expense> expense = expenseRepository.findByUserIdAndId(userService.getLoggedInUser().getId(), id);
         if (expense.isPresent()) {
             return expense.get();
         }
@@ -59,12 +59,12 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public List<Expense> readByCategory(String category, Pageable page) {
-        return expenseRepository.findByCategory(category, page).toList();
+        return expenseRepository.findByUserIdAndCategory(userService.getLoggedInUser().getId(), category, page).toList();
     }
 
     @Override
     public List<Expense> readByName(String keyword, Pageable page) {
-        return expenseRepository.findByNameContaining(keyword, page).toList();
+        return expenseRepository.findByUserIdAndNameContaining(userService.getLoggedInUser().getId(), keyword, page).toList();
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ExpenseServiceImpl implements ExpenseService{
         if (endDate == null) {
             endDate = new Date(System.currentTimeMillis());
         }
-        Page<Expense> pages = expenseRepository.findByDateBetween(startDate, endDate, page);
+        Page<Expense> pages = expenseRepository.findByUserIdAndDateBetween(userService.getLoggedInUser().getId(), startDate, endDate, page);
         return pages.toList();
     }
 }
