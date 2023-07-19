@@ -16,19 +16,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> readUser(@PathVariable Long id) {
-        return new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK);
+    @GetMapping("/profile")
+    public ResponseEntity<User> readUser() {
+        return new ResponseEntity<User>(userService.readUser(), HttpStatus.OK);
     }
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
-        User newUser = userService.updateUser(user, id);
+    @PutMapping("/profile")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        User newUser = userService.updateUser(user);
         return new ResponseEntity<User>(newUser, HttpStatus.OK);
     }
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id){
-        userService.deleteUserById(id);
+    @DeleteMapping("/deactivate")
+    public ResponseEntity<HttpStatus> deleteUser(){
+        userService.deleteUserById();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping("/users")

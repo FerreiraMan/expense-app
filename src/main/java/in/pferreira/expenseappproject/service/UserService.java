@@ -7,9 +7,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
     User createUser(UserModel user);
-    User readUser(Long id);
-    User updateUser(User user, Long  id);
-    void deleteUserById(Long id);
+    User readUser();
+    User updateUser(User user);
+    void deleteUserById();
     Page<User> getAllUsers(Pageable page);
     User getLoggedInUser();
 }
